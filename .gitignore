@@ -2,5 +2,7 @@ __pycache__/
 *.pyc
 *.pkl
 .env
+.env.*
 mlruns/
 .ipynb_checkpoints/
+.DS_Store
