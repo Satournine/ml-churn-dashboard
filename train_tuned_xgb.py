@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 from xgboost import XGBClassifier
 from app.plot_metrics import plot_confusion, plot_roc
 from app.plots import plot_xgb_importance
+import joblib
 
 
 df = pd.read_csv("data/preprocessed_churn.csv")
@@ -54,6 +55,8 @@ with mlflow.start_run(run_name="Tuned_XGBoost"):
     print("Accuracy:", acc)
     print("ROC AUC:", auc_score)
     print(classification_report(y_test, y_pred))
+
+    joblib.dump(best_model, "models/best_model.pkl")
 
     # Plots
     plot_confusion(y_test, y_pred, model_name="xgb_tuned")
