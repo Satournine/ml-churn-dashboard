@@ -9,3 +9,4 @@ mlopsenv/
 mlruns/
 .ipynb_checkpoints/
 .DS_Store
+*.egg-info/
