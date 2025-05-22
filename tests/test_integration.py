@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-from preprocess import preprocess_input
+from app.preprocess import preprocess_input
 
 # Load model
 model = joblib.load("models/best_model.pkl")
@@ -51,11 +51,14 @@ low_risk_input = pd.DataFrame([{
     "TotalCharges": 3000.0
 }])
 
-for label, customer in [("HIGH-RISK", high_risk_input), ("LOW-RISK", low_risk_input)]:
-    print(f"\n--- {label} CUSTOMER ---")
-    X = preprocess_input(customer)
+def test_high_risk_prediction():
+    X = preprocess_input(high_risk_input)
     pred = model.predict(X)[0]
     proba = model.predict_proba(X)[0][1]
+    assert pred == 1 or proba > 0.5
 
-    print("Prediction:", "Churn" if pred == 1 else "No Churn")
-    print("Churn Probability:", round(proba, 4))
+def test_low_risk_prediction():
+    X = preprocess_input(low_risk_input)
+    pred = model.predict(X)[0]
+    proba = model.predict_proba(X)[0][1]
+    assert pred == 0 or proba < 0.5
