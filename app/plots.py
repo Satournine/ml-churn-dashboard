@@ -4,15 +4,15 @@ import numpy as np
 import seaborn as sns
 from xgboost import plot_importance
 
+
 def plot_logreg_importance(model, feature_names):
     coefs = model.coef_[0]
-    coef_df = pd.DataFrame({
-        'Feature': feature_names,
-        'Importance': coefs
-    }).sort_values(by = 'Importance', key=abs, ascending=False)
+    coef_df = pd.DataFrame({"Feature": feature_names, "Importance": coefs}).sort_values(
+        by="Importance", key=abs, ascending=False
+    )
 
-    plt.figure(figsize=(10,6))
-    sns.barplot(x='Importance', y='Feature', data=coef_df.head(10))
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x="Importance", y="Feature", data=coef_df.head(10))
     plt.title("Top 10 Feature Importance - Logistic Regression")
     plt.tight_layout()
     plt.savefig("plots/logreg_importance.png")
