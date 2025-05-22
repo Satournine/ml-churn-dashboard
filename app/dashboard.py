@@ -35,9 +35,32 @@ def user_input_form():
         st.session_state.MonthlyCharges = 95.0
         st.session_state.TotalCharges = 100.0
         st.session_state.preset_applied = True
+    def apply_loyal_preset():
+        st.session_state.gender = "Male"
+        st.session_state.SeniorCitizen = 0
+        st.session_state.Partner = "Yes"
+        st.session_state.Dependents = "Yes"
+        st.session_state.tenure = 60
+        st.session_state.PhoneService = "Yes"
+        st.session_state.MultipleLines = "Yes"
+        st.session_state.InternetService = "DSL"
+        st.session_state.OnlineSecurity = "Yes"
+        st.session_state.OnlineBackup = "Yes"
+        st.session_state.DeviceProtection = "Yes"
+        st.session_state.TechSupport = "Yes"
+        st.session_state.StreamingTV = "Yes"
+        st.session_state.StreamingMovies = "Yes"
+        st.session_state.Contract = "Two year"
+        st.session_state.PaperlessBilling = "No"
+        st.session_state.PaymentMethod = "Credit card (automatic)"
+        st.session_state.MonthlyCharges = 30.0
+        st.session_state.TotalCharges = 2500.0
+        st.session_state.preset_applied = True
 
     if st.sidebar.button("Simulate Likely Churner"):
         apply_churner_preset()
+    if st.sidebar.button("Simulate Loyal Customer"):
+        apply_loyal_preset()
 
     gender = st.sidebar.selectbox("Gender", ["Male", "Female"], key="gender")
     SeniorCitizen = st.sidebar.selectbox("Senior Citizen", [0, 1], key="SeniorCitizen")
