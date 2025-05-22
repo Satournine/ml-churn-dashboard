@@ -1,12 +1,12 @@
 __pycache__/
 *.pyc
 *.pkl
+!models/*.pkl
 *.log
 mlopsenv/
 .ipynb_checkpoints/
 .env
 .env.*
 mlruns/
-.ipynb_checkpoints/
 .DS_Store
 *.egg-info/
